@@ -18,6 +18,7 @@ const project = new typescript.TypeScriptAppProject({
   projenrcTs: true,
   package: true,
 
+  release: true,
   releaseToNpm: true,
   npmAccess: NpmAccess.PUBLIC,
   npmTokenSecret: 'NPM_ACCESS_TOKEN',
