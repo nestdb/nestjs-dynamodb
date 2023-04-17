@@ -23,7 +23,10 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "stripInternal": true,
-    "target": "ES2019"
+    "target": "ES2019",
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "sourceMap": false
   },
   "include": [
     ".projenrc.js",
@@ -33,6 +36,8 @@
     "projenrc/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "node_modules",
+    "dist"
   ]
 }

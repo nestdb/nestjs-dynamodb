@@ -44,6 +44,15 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
+  "dependencies": {
+    "@aws/dynamodb-data-mapper": "^0.7.3",
+    "@aws/dynamodb-data-mapper-annotations": "^0.7.3",
+    "@aws/dynamodb-data-marshaller": "^0.7.3",
+    "@nestjs/common": "^9.4.0",
+    "aws-sdk": "^2.1360.0",
+    "is-class": "^0.0.9",
+    "reflect-metadata": "^0.1.13"
+  },
   "license": "MIT",
   "publishConfig": {
     "access": "public"

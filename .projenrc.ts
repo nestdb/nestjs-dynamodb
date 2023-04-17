@@ -23,8 +23,27 @@ const project = new typescript.TypeScriptAppProject({
   npmAccess: NpmAccess.PUBLIC,
   npmTokenSecret: 'NPM_ACCESS_TOKEN',
 
+  tsconfig: {
+    compilerOptions: {
+      emitDecoratorMetadata: true,
+      experimentalDecorators: true,
+      skipLibCheck: true,
+      declaration: true,
+      sourceMap: false,
+    },
+    exclude: ['node_modules', 'dist'],
+  },
+
   /* Runtime dependencies of this module. */
-  deps: [],
+  deps: [
+    '@aws/dynamodb-data-mapper',
+    '@aws/dynamodb-data-mapper-annotations',
+    '@aws/dynamodb-data-marshaller',
+    '@nestjs/common',
+    'aws-sdk',
+    'is-class',
+    'reflect-metadata',
+  ],
 
   /* Build dependencies for this module. */
   devDeps: [],
