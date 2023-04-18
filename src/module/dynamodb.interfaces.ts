@@ -7,6 +7,7 @@ import { ConfigurationServicePlaceholders } from 'aws-sdk/lib/config_service_pla
 
 export interface DynamoDBClass {
   new (...args: any[]): DynamoDBClass;
+  [key: string]: any;
 }
 
 export interface DynamoDBClassWithOptions {
