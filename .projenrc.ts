@@ -28,7 +28,6 @@ const project = new typescript.TypeScriptAppProject({
       emitDecoratorMetadata: true,
       experimentalDecorators: true,
     },
-    exclude: ['node_modules', 'dist'],
   },
 
   /* Runtime dependencies of this module. */
@@ -36,6 +35,7 @@ const project = new typescript.TypeScriptAppProject({
     '@nestjs/common',
     '@nestjs/core',
     '@nestjs/mapped-types',
+    'rxjs',
     'aws-sdk',
     'reflect-metadata',
   ],
