@@ -26,9 +26,7 @@
     "strictPropertyInitialization": true,
     "stripInternal": true,
     "target": "ES2019",
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "sourceMap": false
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src/**/*.ts"

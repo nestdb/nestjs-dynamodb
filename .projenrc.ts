@@ -27,21 +27,16 @@ const project = new typescript.TypeScriptAppProject({
     compilerOptions: {
       emitDecoratorMetadata: true,
       experimentalDecorators: true,
-      skipLibCheck: true,
-      declaration: true,
-      sourceMap: false,
     },
     exclude: ['node_modules', 'dist'],
   },
 
   /* Runtime dependencies of this module. */
   deps: [
-    '@aws/dynamodb-data-mapper',
-    '@aws/dynamodb-data-mapper-annotations',
-    '@aws/dynamodb-data-marshaller',
     '@nestjs/common',
+    '@nestjs/core',
+    '@nestjs/mapped-types',
     'aws-sdk',
-    'is-class',
     'reflect-metadata',
   ],
 

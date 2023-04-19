@@ -72,27 +72,19 @@
       "type": "build"
     },
     {
-      "name": "@aws/dynamodb-data-mapper",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws/dynamodb-data-mapper-annotations",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws/dynamodb-data-marshaller",
-      "type": "runtime"
-    },
-    {
       "name": "@nestjs/common",
       "type": "runtime"
     },
     {
-      "name": "aws-sdk",
+      "name": "@nestjs/core",
       "type": "runtime"
     },
     {
-      "name": "is-class",
+      "name": "@nestjs/mapped-types",
+      "type": "runtime"
+    },
+    {
+      "name": "aws-sdk",
       "type": "runtime"
     },
     {
