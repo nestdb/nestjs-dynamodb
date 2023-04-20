@@ -4,7 +4,7 @@ import { createDynamoDBProvider } from './dynamodb.providers';
 import { DynamoDBService } from './dynamodb.service';
 
 export interface DynamoDBModuleOptions {
-  AWSConfig: AWS.Config;
+  AWSConfig: Partial<AWS.Config>;
   dynamoDBOptions?: AWS.DynamoDB.Types.ClientConfiguration;
   documentClientOptions?: AWS.DynamoDB.DocumentClient.DocumentClientOptions & AWS.DynamoDB.Types.ClientApiVersions;
   tables?: any[];

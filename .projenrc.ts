@@ -30,6 +30,11 @@ const project = new typescript.TypeScriptAppProject({
     },
   },
 
+  npmignore: [
+    '.gitattributes',
+    '.projenrc.ts',
+  ],
+
   /* Runtime dependencies of this module. */
   deps: [
     '@nestjs/common',
