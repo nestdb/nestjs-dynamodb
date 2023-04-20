@@ -3,7 +3,11 @@ import * as AWS from 'aws-sdk';
 import { QueryInput, ScanInput, PutItemInput } from 'aws-sdk/clients/dynamodb';
 import { DynamoDBService } from './dynamodb.service';
 
-export class DynamoDBRepository<T extends Record<string, any>> {
+type ExtractProps<T> = {
+  [K in keyof T]: T[K];
+};
+
+export class DynamoDBRepository<T> {
   protected readonly documentClient: AWS.DynamoDB.DocumentClient;
 
   constructor(service: DynamoDBService, private readonly tableClass: new () => T) {
@@ -14,14 +18,14 @@ export class DynamoDBRepository<T extends Record<string, any>> {
     return Reflect.getMetadata('table', this.tableClass);
   }
 
-  private convertToAttributeMap(item: T): AWS.DynamoDB.DocumentClient.PutItemInputAttributeMap {
+  private convertToAttributeMap(item: ExtractProps<T>): AWS.DynamoDB.DocumentClient.PutItemInputAttributeMap {
     return AWS.DynamoDB.Converter.marshall(item) as AWS.DynamoDB.DocumentClient.PutItemInputAttributeMap;
   }
 
   async put(item: T): Promise<T> {
     const input: PutItemInput = {
       TableName: this.getTableName(),
-      Item: this.convertToAttributeMap(item),
+      Item: this.convertToAttributeMap(item as unknown as ExtractProps<T>),
     };
 
     await this.documentClient.put(input).promise();
