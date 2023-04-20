@@ -1,24 +1,18 @@
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 import { Injectable, Inject } from '@nestjs/common';
-import * as AWS from 'aws-sdk';
 import { DynamoDBModuleOptions } from './dynamodb.module';
 
 @Injectable()
 export class DynamoDBService {
-  private readonly dynamoDB: AWS.DynamoDB;
-  private readonly documentClient: AWS.DynamoDB.DocumentClient;
+  private readonly ddbDocClient: DynamoDBDocumentClient;
 
   constructor(@Inject('DYNAMODB_MODULE_OPTIONS') options: DynamoDBModuleOptions) {
-    AWS.config.update(options.AWSConfig);
-    this.dynamoDB = new AWS.DynamoDB(options.dynamoDBOptions);
-    this.documentClient = new AWS.DynamoDB.DocumentClient(options.documentClientOptions);
+    const client = new DynamoDBClient(options.dynamoDBOptions ?? {});
+    this.ddbDocClient = DynamoDBDocumentClient.from(client);
   }
 
-  // Expose the DynamoDB client and DocumentClient for further usage
-  getDynamoDB(): AWS.DynamoDB {
-    return this.dynamoDB;
-  }
-
-  getDocumentClient(): AWS.DynamoDB.DocumentClient {
-    return this.documentClient;
+  getClient(): DynamoDBDocumentClient {
+    return this.ddbDocClient;
   }
 }

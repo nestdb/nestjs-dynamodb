@@ -20,6 +20,14 @@
       "type": "build"
     },
     {
+      "name": "aws-sdk-client-mock",
+      "type": "build"
+    },
+    {
+      "name": "aws-sdk-client-mock-jest",
+      "type": "build"
+    },
+    {
       "name": "eslint-import-resolver-node",
       "type": "build"
     },
@@ -72,6 +80,14 @@
       "type": "build"
     },
     {
+      "name": "@aws-sdk/client-dynamodb",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/lib-dynamodb",
+      "type": "runtime"
+    },
+    {
       "name": "@nestjs/common",
       "type": "runtime"
     },
@@ -81,10 +97,6 @@
     },
     {
       "name": "@nestjs/mapped-types",
-      "type": "runtime"
-    },
-    {
-      "name": "aws-sdk",
       "type": "runtime"
     },
     {

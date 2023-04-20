@@ -30,6 +30,19 @@ const project = new typescript.TypeScriptAppProject({
     },
   },
 
+  jestOptions: {
+    jestConfig: {
+      globals: {
+        'ts-jest': {
+          tsconfig: {
+            experimentalDecorators: true,
+            emitDecoratorMetadata: true,
+          },
+        },
+      },
+    },
+  },
+
   npmignore: [
     '.gitattributes',
     '.projenrc.ts',
@@ -41,11 +54,16 @@ const project = new typescript.TypeScriptAppProject({
     '@nestjs/core',
     '@nestjs/mapped-types',
     'rxjs',
-    'aws-sdk',
     'reflect-metadata',
+    '@aws-sdk/client-dynamodb',
+    '@aws-sdk/lib-dynamodb',
   ],
 
   /* Build dependencies for this module. */
-  devDeps: [],
+  devDeps: [
+    '@types/jest',
+    'aws-sdk-client-mock',
+    'aws-sdk-client-mock-jest',
+  ],
 });
 project.synth();

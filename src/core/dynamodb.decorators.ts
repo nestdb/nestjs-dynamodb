@@ -13,7 +13,11 @@ export function HashKey(): PropertyDecorator {
   };
 }
 
-// Define other decorators like RangeKey, Attribute, etc.
+export function RangeKey(): PropertyDecorator {
+  return (target: Object, propertyKey: string | symbol) => {
+    Reflect.defineMetadata('rangeKey', propertyKey, target);
+  };
+}
 
 export function InjectTable<T>(tableClass: new () => T): ParameterDecorator {
   return Inject(`DynamoDBTable:${tableClass.name}`);
