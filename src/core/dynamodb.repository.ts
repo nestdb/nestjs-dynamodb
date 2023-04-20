@@ -25,14 +25,18 @@ export class DynamoDBRepository<T> {
       plainObject[key] = (item as any)[key];
     }
 
+    console.log({ plainObject });
+
     return AWS.DynamoDB.Converter.marshall(plainObject) as AWS.DynamoDB.DocumentClient.PutItemInputAttributeMap;
   }
 
 
   async put(item: T): Promise<T> {
+    let Item = this.convertToAttributeMap(item as unknown as ExtractProps<T>);
+    console.log({ Item });
     const input: PutItemInput = {
       TableName: this.getTableName(),
-      Item: this.convertToAttributeMap(item as unknown as ExtractProps<T>),
+      Item,
     };
 
     await this.documentClient.put(input).promise();
