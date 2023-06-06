@@ -45,6 +45,26 @@ export class DynamoDBRepository<T> {
     return item;
   }
 
+  async getOne(key: Record<string, any>, indexName?: string): Promise<T> {
+    let keyNames = Object.keys(key);
+    let command = new QueryCommand({
+      TableName: this.getTableName(),
+      KeyConditionExpression: `#${keyNames[0]} = :${keyNames[0]}`,
+      ExpressionAttributeNames: {},
+      ExpressionAttributeValues: {},
+    });
+
+    command.input.ExpressionAttributeNames![`#${keyNames[0]}`] = keyNames[0];
+    command.input.ExpressionAttributeValues![`:${keyNames[0]}`] = key[keyNames[0]];
+
+    if (indexName) {
+      command.input.IndexName = indexName;
+    }
+
+    const item = await this.ddbDocClient.send(command);
+    return item.Items ? item.Items[0] as T : {} as T;
+  }
+
   async queryOne(keys: { [index: string]: any }, indexName?: string): Promise<T> {
     let keyNames = Object.keys(keys);
     let command = new QueryCommand({
