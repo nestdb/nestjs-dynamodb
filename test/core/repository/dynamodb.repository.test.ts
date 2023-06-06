@@ -20,6 +20,7 @@ describe('DynamoDBRepository', () => {
 
   beforeEach(() => {
     service = new DynamoDBService({
+      prefix: 'prod',
       dynamoDBOptions: { region: 'eu-west-1' },
     });
     repo = new DynamoDBRepository<UserDto>(service, UserDto);
