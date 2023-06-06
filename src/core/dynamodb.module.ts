@@ -6,13 +6,14 @@ import { DynamoDBService } from './dynamodb.service';
 export interface DynamoDBModuleOptions {
   dynamoDBOptions?: DynamoDBClientConfig;
   tables?: any[];
+  prefix: string | null;
 }
 
 @Global()
 @Module({})
 export class DynamoDBModule {
   static forRoot(options: DynamoDBModuleOptions): DynamicModule {
-    const tableProviders = options.tables?.map(tableClass => createDynamoDBProvider(tableClass)) || [];
+    const tableProviders = options.tables?.map(tableClass => createDynamoDBProvider(tableClass, options.prefix)) || [];
 
     return {
       module: DynamoDBModule,

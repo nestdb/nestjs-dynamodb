@@ -8,13 +8,19 @@ type ExtractProps<T> = {
 
 export class DynamoDBRepository<T> {
   protected readonly ddbDocClient: DynamoDBDocumentClient;
+  protected readonly tablePrefix: string | null;
 
-  constructor(service: DynamoDBService, private readonly tableClass: new () => T) {
+  constructor(service: DynamoDBService, private readonly tableClass: new () => T, tablePrefix: string | null = null) {
     this.ddbDocClient = service.getClient();
+    this.tablePrefix = tablePrefix;
   }
 
   private getTableName(): string {
-    return Reflect.getMetadata('table', this.tableClass);
+    let tableName = Reflect.getMetadata('table', this.tableClass);
+    if (this.tablePrefix) {
+      tableName = `${this.tablePrefix}-${tableName}`;
+    }
+    return tableName;
   }
 
   protected convertToAttributeMap(item: ExtractProps<T>): Record<string, any> {
